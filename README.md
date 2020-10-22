@@ -2,7 +2,7 @@
 
 A NodeJS Client crawler that extracts the check point data from Edesenv
 
-![GitHub Workflow Status](https://img.shields.io/github/workflow/status/coopersystem-fsd/edesenv-client/main)
+![GitHub Workflow Status](https://img.shields.io/github/workflow/status/coopersystem-fsd/edesenv-client/CI)
 
 ## Install
 
