@@ -5,8 +5,6 @@ import tough from 'tough-cookie';
 
 const baseUrl = 'http://edesenv3.coopersystem.com.br/edesenv2';
 
-axios.defaults.baseURL = baseUrl;
-
 axiosCookieJarSupport(axios);
 const cookieJar = new tough.CookieJar();
 
@@ -26,7 +24,7 @@ export class EdesenvClient {
   private async _doLogin() {
     const { username, password } = this.config;
     await axios.post(
-      '/usuarios/login',
+      `${baseUrl}/edesenv2/usuarios/login`,
       {
         Usuario: {
           username,
@@ -43,10 +41,13 @@ export class EdesenvClient {
   async getCheckPointEntriesToday(): Promise<Date[]> {
     await this._doLogin();
 
-    const { data } = await axios.get('/alocacoes/get_entradas_saidas', {
-      jar: cookieJar,
-      withCredentials: true,
-    });
+    const { data } = await axios.get(
+      `${baseUrl}/alocacoes/get_entradas_saidas`,
+      {
+        jar: cookieJar,
+        withCredentials: true,
+      }
+    );
 
     const matches = data.match(
       /(?<=<div id="content" style="display:none">)\s+(.*?)\s+(?=<\/div>)/gm
