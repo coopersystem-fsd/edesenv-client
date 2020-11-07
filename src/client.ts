@@ -49,13 +49,9 @@ export class EdesenvClient {
       }
     );
 
-    console.log('Data', data);
-
     const matches = data.match(
       /(?<=<div id="content" style="display:none">)\s+(.*?)\s+(?=<\/div>)/gm
     );
-
-    console.log('Matches', matches);
 
     if (!matches) {
       throw new Error(
