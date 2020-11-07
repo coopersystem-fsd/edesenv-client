@@ -24,7 +24,7 @@ export class EdesenvClient {
   private async _doLogin() {
     const { username, password } = this.config;
     await axios.post(
-      `${baseUrl}/edesenv2/usuarios/login`,
+      `${baseUrl}/usuarios/login`,
       {
         Usuario: {
           username,
@@ -49,9 +49,13 @@ export class EdesenvClient {
       }
     );
 
+    console.log('Data', data);
+
     const matches = data.match(
       /(?<=<div id="content" style="display:none">)\s+(.*?)\s+(?=<\/div>)/gm
     );
+
+    console.log('Matches', matches);
 
     if (!matches) {
       throw new Error(
